@@ -52,10 +52,6 @@ Crucial: Verify this path is correct for your system. Using forward slashes (`/`
 1. Click the "Generate Binds File" button.
 2. This creates the file `binds.cfg` inside your CS2 `cfg` folder, containing lines like:
 
-bind "1" "spec_player 5" // PlayerName1
-bind "2" "spec_player 6" // PlayerName2
-spec_usenumberkeys_nobinds false
-
     bind "1" "spec_player 5" // PlayerName1
     bind "2" "spec_player 6" // PlayerName2
     spec_usenumberkeys_nobinds false
