@@ -1,6 +1,11 @@
 
 # CS2 Observer Bind Tool
 This Python tool connects to Counter-Strike 2 via Telnet to retrieve the official server player slots. It allows you to manually assign custom keybinds to spectators slots and automatically generates a complete configuration file for easy use in CS2. The tool uses the  `telnetlib3` library for network communication.
+
+## Important Notes
+- It is recommended to use a custom HUD that will force team sides, as they currently sway at half time.
+- The tool will have to be rerun and the config remade for every map as the server slots reset on map change.
+
 ## Prerequisites
 Python 3.x: Ensure you have Python installed.
 Required Library: You must install the `telnetlib3` library using pip:
@@ -8,7 +13,6 @@ Required Library: You must install the `telnetlib3` library using pip:
     pip install telnetlib3
 
 ## Setup
-
 
 The script connects to CS2 using the NetCon server, which must be enabled via launch options.
 
@@ -56,7 +60,7 @@ spec_usenumberkeys_nobinds false
     bind "2" "spec_player 6" // PlayerName2
     spec_usenumberkeys_nobinds false
 
-Step 5: Activate Binds In-Game
+**Step 5: Activate Binds In-Game**
 1. Go back into CS2.
 2. You can execute the file directly in the console:
 
