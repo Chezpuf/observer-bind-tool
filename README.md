@@ -7,8 +7,8 @@ This Python tool connects to Counter-Strike 2 via Telnet to retrieve the officia
 - The tool will have to be rerun and the config remade for every map as the server slots reset on map change.
 
 ## Prerequisites
-Python 3.x: Ensure you have Python installed.
-Required Library: You must install the `telnetlib3` library using pip:
+1. Python 3.x: Ensure you have Python installed.
+2. Required Library: You must install the `telnetlib3` library using pip:
 
     pip install telnetlib3
 
