@@ -15,9 +15,9 @@ The script connects to CS2 using the NetCon server, which must be enabled via la
  1. Open your Steam Library.
  2. Right-click on Counter-Strike 2 and select Properties.
  3. Under the General tab, find the Launch Options text box.
- 4. Add the following command:
+ 4. Add the following commands:
 
-    `-netconport 2020`
+    `-tools -netconport 2020`
     (Note: If you use a different port in your Python script, change this number to match.)
 
 ### 2. Tool Configuration
