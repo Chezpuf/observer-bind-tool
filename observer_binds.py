@@ -10,8 +10,8 @@ import telnetlib3
 # --- V V V ---  USER CONFIGURATION - EDIT THIS SECTION --- V V V ---
 
 TELNET_HOST = "127.0.0.1"
-TELNET_PORT = 2020
-CS2_CFG_PATH = "E:\Steam\steamapps\common\Counter-Strike Global Offensive\game\csgo\cfg"
+TELNET_PORT = 2121
+CS2_CFG_PATH = "C:/Program Files (x86)/Steam/steamapps/common/Counter-Strike Global Offensive/game/csgo/cfg"
 OUTPUT_FILENAME = "binds.cfg"
 
 # --- ^ ^ ^ ---  END OF USER CONFIGURATION --- ^ ^ ^ ---
@@ -154,4 +154,5 @@ class ObserverApp:
 if __name__ == "__main__":
     root = tk.Tk()
     app = ObserverApp(root)
+
     root.mainloop()
