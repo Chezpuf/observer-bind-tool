@@ -11,7 +11,7 @@ import json
 # --- V V V ---  USER CONFIGURATION - EDIT THIS SECTION --- V V V ---
 
 # Default Telnet connection details (used if no saved values exist)
-DEFAULT_TELNET_HOST = "127.00.1" # Used as default in the hosts list
+DEFAULT_TELNET_HOST = "127.0.0.1" # Used as default in the hosts list
 DEFAULT_TELNET_PORT = 2020
 
 # Full path to your CS2 'cfg' directory. (Optional for this version, but good to keep)
@@ -461,3 +461,4 @@ if __name__ == "__main__":
     root = tk.Tk()
     app = ObserverApp(root)
     root.mainloop()
+
