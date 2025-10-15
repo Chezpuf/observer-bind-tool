@@ -1,71 +1,40 @@
 
-# Observer Bind Tool
+# Chezpuf's CS2 Observer Bind Tool
 
-This Python tool simplifies the process of setting custom keybinds for observing players in Counter-Strike 2. Unlike older methods, this tool sends binds directly to the game via Telnet and remembers your key assignments for each player across map changes.
-
-## Features
-
--   **Live Binding:** Sends `bind` commands directly to CS2 instantly, bypassing the need to generate and `exec` configuration files.
-    
--   **Persistence:** Saves your custom key assignments (e.g., "Player A" is always bound to "F1") to a local file, so you don't have to re-enter them after a map change or game restart.
-    
+This tool simplifies the process of managing player key bindings for CS2 observers via Telnet, especially during halftime swaps.
 
 ## Prerequisites
 
-1.  **Python 3.x**
+To use this tool, your CS2 client **must** be launched with the network console and developer tools enabled. Add the following to your CS2 Launch Options in Steam:
+
+```
+-netconport 2020 -tools
+
+```
+
+(Note: You can change the port number, but ensure it matches the setting in the application.)
+
+## Features
+
+-   **Live Player List:** Fetches all currently connected users (players and spectators) from the server.
     
-2.  **Required Library:** Install `telnetlib3` using pip:
+-   **Persistent Binds:** Saves player key assignments locally, so they are remembered between matches.
     
-    ```
-    pip install telnetlib3
+-   **One-Click Swap:** The **Swap** button rotates the key binds for the two teams (1 → 6, 2 → 7, 5 → 0, etc.) and automatically sends the new binds to the game.
     
-    ```
+-   **Coach Exclusion:** Players identified as a 'Coach' or 'Spectator' will retain their custom bind keys during the swap.
     
 
-## CS2 Setup (Mandatory)
+## How to Use
 
-You must enable the in-game console server (NetCon) via CS2 launch options to allow the tool to communicate with the game.
-
-1.  Open **Steam** > **Library** > **CS2 Properties**.
+1.  **Configure Connection:** Enter the IP address of your local machine (`127.0.0.1` by default) and the Telnet port (`2020` by default).
     
-2.  Add the following command to the **Launch Options**:
+2.  **Refresh List:** Click **Refresh List** to fetch all current users from the game.
     
-    ```
-    -netconport 2020 -tools
+3.  **Set Binds:** Enter the desired player key (e.g., `1`, `2`, `q`, `e`) next to the corresponding player's name.
     
-    ```
+4.  **Send Binds:**
     
-
-## Usage Instructions
-
-### 1. Start the Game and Tool
-
-1.  Launch **Counter-Strike 2** and join a server or start a demo (you must be in a game state).
-    
-2.  Run the Python script:
-    
-    ```
-    python observer_binds.py
-    
-    ```
-    
-
-### 2. Fetch and Assign Binds
-
-1.  Click **"1. Refresh Player List"**. The tool will fetch the current player list and their corresponding server slots.
-    
-2.  The list will automatically pre-fill any saved key assignments (persistence).
-    
-3.  Manually enter or adjust the **Bind Key** next to each player.
-    
-
-### 3. Send Binds Live
-
-1.  Click **"2. Send Binds Live (via Telnet)"**.
-    
-2.  The tool immediately sends the configured `bind` commands to CS2. A success message will appear in the status bar.
-    
-3.  Your custom observer binds are now active in the game.
-    
-
-**Note on Persistence:** The first time you assign keys and click "Send Binds Live," the assignments are saved to `observer_tool_bindings.json`. Next time you play, those keys will automatically load for the corresponding players.
+    -   Click **Send Binds** to immediately push the current key assignments to the game.
+        
+    -   Click **Swap** at halftime. This will rotate the keys in the GUI and automatically send the new binds live.
