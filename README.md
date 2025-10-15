@@ -1,76 +1,71 @@
 
-# CS2 Observer Bind Tool
-This Python tool connects to Counter-Strike 2 via Telnet to retrieve the official server player slots. It allows you to manually assign custom keybinds to spectators slots and automatically generates a complete configuration file for easy use in CS2. The tool uses the  `telnetlib3` library for network communication.
+# Observer Bind Tool
 
-## Important Notes
-- It is recommended to use a custom HUD that will force team sides, as they currently sway at half time.
-- The tool will have to be rerun and the config remade for every map as the server slots reset on map change.
+This Python tool simplifies the process of setting custom keybinds for observing players in Counter-Strike 2. Unlike older methods, this tool sends binds directly to the game via Telnet and remembers your key assignments for each player across map changes.
+
+## Features
+
+-   **Live Binding:** Sends `bind` commands directly to CS2 instantly, bypassing the need to generate and `exec` configuration files.
+    
+-   **Persistence:** Saves your custom key assignments (e.g., "Player A" is always bound to "F1") to a local file, so you don't have to re-enter them after a map change or game restart.
+    
 
 ## Prerequisites
-1. Python 3.x: Ensure you have Python installed.
-2. Required Library: You must install the `telnetlib3` library using pip:
 
+1.  **Python 3.x**
+    
+2.  **Required Library:** Install `telnetlib3` using pip:
+    
+    ```
     pip install telnetlib3
+    
+    ```
+    
 
-## Setup
+## CS2 Setup (Mandatory)
 
-The script connects to CS2 using the NetCon server, which must be enabled via launch options.
+You must enable the in-game console server (NetCon) via CS2 launch options to allow the tool to communicate with the game.
 
- 1. Open your Steam Library.
- 2. Right-click on Counter-Strike 2 and select Properties.
- 3. Under the General tab, find the Launch Options text box.
- 4. Add the following commands:
+1.  Open **Steam** > **Library** > **CS2 Properties**.
+    
+2.  Add the following command to the **Launch Options**:
+    
+    ```
+    -netconport 2020 -tools
+    
+    ```
+    
 
-    `-tools -netconport 2020`
-    (Note: If you use a different port in your Python script, change this number to match.)
+## Usage Instructions
 
-### 2. Tool Configuration
-Before running the script, you must edit the `CS2_CFG_PATH` variable to point to your local CS2 configuration folder.
+### 1. Start the Game and Tool
 
-Open the Python script and modify the USER CONFIGURATION section:
+1.  Launch **Counter-Strike 2** and join a server or start a demo (you must be in a game state).
+    
+2.  Run the Python script:
+    
+    ```
+    python observer_binds.py
+    
+    ```
+    
 
-    CS2_CFG_PATH = "C:/Program Files (x86)/Steam/steamapps/common/Counter-Strike Global Offensive/game/csgo/cfg"
+### 2. Fetch and Assign Binds
 
-Crucial: Verify this path is correct for your system. Using forward slashes (`/`) is recommended, even on Windows.
+1.  Click **"1. Refresh Player List"**. The tool will fetch the current player list and their corresponding server slots.
+    
+2.  The list will automatically pre-fill any saved key assignments (persistence).
+    
+3.  Manually enter or adjust the **Bind Key** next to each player.
+    
 
-### 3. Usage Instructions
+### 3. Send Binds Live
 
-**Step 1: Run the Tool and CS2**
-1. Launch CS2 and join a server or start a demo (you must be in a game state to fetch players).
-2. Run the Python script.
+1.  Click **"2. Send Binds Live (via Telnet)"**.
+    
+2.  The tool immediately sends the configured `bind` commands to CS2. A success message will appear in the status bar.
+    
+3.  Your custom observer binds are now active in the game.
+    
 
-**Step 2: Fetch Player List**
-1. In the GUI tool, click the "Refresh Player List" button.
-2. The script will connect to CS2 and populate the list with players.
-- If you get a connection error, ensure CS2 is running and the `-netconport` is correctly set.
-
-**Step 3: Assign Keybinds**
-1. The list will show each player and their calculated Server Slot number (Player # + 1).
-2. Manually type the desired Bind Key (e.g., 1, f1, mouse5) into the input box next to each player.
-
-**Step 4: Generate Configuration File**
-1. Click the "Generate Binds File" button.
-2. This creates the file `binds.cfg` inside your CS2 `cfg` folder, containing lines like:
-
-    bind "1" "spec_player 5" // PlayerName1
-    bind "2" "spec_player 6" // PlayerName2
-    spec_usenumberkeys_nobinds false
-
-**Step 5: Activate Binds In-Game**
-1. Go back into CS2.
-2. You can execute the file directly in the console:
-
-       exec binds.cfg
-
-Recommendation: Bind the execution to a single key for quick reloading:
-
-    bind "F11" "binds.cfg"
-
-Now, pressing F11 will load your custom binds whenever you need them.
-
-### Troubleshooting
-|Problem|Cause|Solution|
-|--|--|--|
-|`Connection Refused`|CS2 is not running or Telnet is not enabled.|Ensure CS2 is running and you have `-netconport 2020` in your launch options.|
-|`...CS2 CFG path is invalid...`|The `CS2_CFG_PATH` variable is wrong.|Find the correct `.../csgo/cfg` path on your system and update the Python script.|
-|`ModuleNotFoundError: telnetlib3`|The required library is not installed.|Run `pip install telnetlib3` in your terminal.|
+**Note on Persistence:** The first time you assign keys and click "Send Binds Live," the assignments are saved to `observer_tool_bindings.json`. Next time you play, those keys will automatically load for the corresponding players.
